@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Http\Request\StoreClientRequest;
 use App\Http\Request\UpdateClientRequest;
+use App\Mail\RegisterUserMail;
 use App\Models\Client;
 use App\Services\WeatherService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class ClientController extends Controller
 {
@@ -35,13 +37,14 @@ class ClientController extends Controller
 
     public function store(StoreClientRequest $request)
     {
-        Client::create([
+        $client = Client::create([
             'name' => $request->name,
             'email' => $request->email,
             'phone' => $request->phone,
             'city' => $request->city,
             'status' => $request->status,
         ]);
+        Mail::to($client->email)->queue(new RegisterUserMail($client));
 
         return redirect()->route('clients.index');
     }
