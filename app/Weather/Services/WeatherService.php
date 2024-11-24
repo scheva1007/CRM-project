@@ -7,11 +7,6 @@ use Illuminate\Support\Facades\Cache;
 
 class WeatherService
 {
-    /**
-     * Получить погоду для указанного города.
-     *
-     * @return array|null
-     */
     public function getWeather(string $city)
     {
         return Cache::remember("weather_{$city}", 3600, function () use ($city) {
