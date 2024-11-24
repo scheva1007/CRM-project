@@ -10,7 +10,7 @@
         <li class="list-group-item"><strong>Email:</strong> {{ $client->email }}</li>
         <li class="list-group-item"><strong>Телефон:</strong> {{ $client->phone }}</li>
         <li class="list-group-item"><strong>Город:</strong> {{ $client->city ?? 'Not specified' }}</li>
-        <li class="list-group-item"><strong>Дата регистрации:</strong> {{ $client->created_at->format('d M Y') }}</li>
+        <li class="list-group-item"><strong>Дата регистрации:</strong> {{ $client->registered_at->format('Y-m-d') }}</li>
         <li class="list-group-item"><strong>Статус:</strong> {{ ucfirst($client->status) }}</li>
     </ul>
     <h4>Информация о погоде:</h4>

@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\ClientController;
+use App\Client\Controllers\ClientController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [ClientController::class, 'index'])->name('clients.index');

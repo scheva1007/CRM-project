@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Client\Controllers;
 
-use App\Http\Request\StoreClientRequest;
-use App\Http\Request\UpdateClientRequest;
-use App\Mail\RegisterUserMail;
-use App\Models\Client;
-use App\Services\WeatherService;
+use App\Client\Mails\RegisterUserMail;
+use App\Client\Models\Client;
+use App\Client\Requests\StoreClientRequest;
+use App\Client\Requests\UpdateClientRequest;
+use App\Http\Controllers\Controller;
+use App\Weather\Services\WeatherService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 
@@ -46,7 +47,7 @@ class ClientController extends Controller
         ]);
         Mail::to($client->email)->queue(new RegisterUserMail($client));
 
-        return redirect()->route('clients.index');
+        return redirect()->route('clients.index')->with('success', 'Новый клиент успешно добавлен');
     }
 
     public function show(Client $client, WeatherService $weatherService)
@@ -77,6 +78,6 @@ class ClientController extends Controller
             'status' => $request->status,
         ]);
 
-        return redirect()->route('clients.index');
+        return redirect()->route('clients.index')->with('success', 'Данные успешно обновлены');
     }
 }

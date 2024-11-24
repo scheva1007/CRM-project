@@ -18,10 +18,9 @@ class CreateClientsTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
-            $table->string('phone');
+            $table->string('phone')->unique();
             $table->date('registered_at')->default(DB::raw('CURRENT_DATE'));
-            $table->string('status')->default('ordered');
-            $table->timestamps();
+            $table->enum('status', ['ordered', 'not ordered', 'vip client'])->default('not ordered');
         });
     }
 

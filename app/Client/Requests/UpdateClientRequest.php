@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Request;
+namespace App\Client\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreClientRequest extends FormRequest
+class UpdateClientRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,12 +23,14 @@ class StoreClientRequest extends FormRequest
      */
     public function rules()
     {
+        $clientId = $this->route('client')->id;
+
         return [
             'name' => 'required|string|max:100',
-            'email' => 'required|email|unique:clients,email',
-            'phone' => 'required|string|max:20',
-            'city' => 'required|string',
-            'status' => 'required|in:ordered,not ordered,vip client,'
+            'email' => 'required|email|unique:clients,email,' . $clientId,
+            'phone' => 'required|string|regex:/^\+380\d{9}$/|unique:clients,phone,' . $clientId,
+            'city' => 'nullable|string',
+            'status' => 'required|in:ordered,not ordered,vip client',
         ];
     }
 }
