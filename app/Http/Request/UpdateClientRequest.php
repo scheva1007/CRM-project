@@ -27,6 +27,7 @@ class UpdateClientRequest extends FormRequest
             'name' => 'required|string|max:100',
             'email' => 'required|email',
             'phone' => 'required|string|max:20',
+            'city' => 'required|string',
             'status' => 'required|in:ordered,not ordered,vip client',
         ];
     }

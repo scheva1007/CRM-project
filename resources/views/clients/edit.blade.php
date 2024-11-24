@@ -7,18 +7,23 @@
     @method('PUT')
 
         <div class="form-group">
-            <label>Имя</label>
+            <label>Имя:</label>
             <input type="text" name="name" class="form-control" style="width: 200px;" value="{{ old('name', $client->name) }}">
         </div>
 
         <div class="form-group">
-            <label>Email</label>
+            <label>Email:</label>
             <input type="email" name="email" class="form-control" style="width: 200px;" value="{{ old('email', $client->email) }}">
         </div>
 
         <div class="form-group">
-            <label>Телефон</label>
+            <label>Телефон:</label>
             <input type="text" name="phone" class="form-control" style="width: 200px;" value="{{ old('phone', $client->phone) }}">
+        </div>
+
+        <div class="form-group">
+            <label>Город:</label>
+            <input type="text" name="city" class="form-control" style="width: 200px;" value="{{ old('city', $client->city) }}">
         </div>
 
         <div class="form-group">

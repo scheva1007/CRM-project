@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Request\StoreClientRequest;
 use App\Http\Request\UpdateClientRequest;
 use App\Models\Client;
+use App\Services\WeatherService;
 use Illuminate\Http\Request;
 
 class ClientController extends Controller
@@ -38,10 +39,22 @@ class ClientController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'phone' => $request->phone,
+            'city' => $request->city,
             'status' => $request->status,
         ]);
 
         return redirect()->route('clients.index');
+    }
+
+    public function show(Client $client, WeatherService $weatherService)
+    {
+        $weather = null;
+        if ($client->city) {
+            $weather = $weatherService->getWeather($client->city);
+        }
+        $statuses = Client::STATUSES;
+
+        return view('clients.show', compact('client', 'statuses', 'weather'));
     }
 
     public function edit(Client $client)
@@ -57,6 +70,7 @@ class ClientController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'phone' => $request->phone,
+            'city' => $request->city,
             'status' => $request->status,
         ]);
 

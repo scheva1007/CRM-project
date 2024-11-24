@@ -5,18 +5,21 @@
 <form method="post" action="{{ route('clients.store') }}">
     @csrf
     <div class="form-group">
-        <label>Имя</label>
+        <label>Имя:</label>
         <input type="text" name="name" class="form-control" style="width: 200px;">
     </div>
     <div class="form-group">
-        <label>email</label>
+        <label>email:</label>
         <input type="email" name="email" class="form-control" style="width: 200px;">
     </div>
     <div class="form-group">
-        <label>Телефон</label>
+        <label>Телефон:</label>
         <input type="text" name="phone" class="form-control" style="width: 200px;">
     </div>
-
+    <div class="form-group">
+        <label>Город:</label>
+        <input type="text" name="city" class="form-control" style="width: 200px;">
+    </div>
     <div class="form-group">
         <label for="status">Выберите статус:</label>
         <select name="status" id="status" class="form-control" style="width: 200px;">

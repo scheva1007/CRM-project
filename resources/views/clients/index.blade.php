@@ -6,10 +6,10 @@
 </div>
 <form method="GET" action="{{ route('clients.index') }}" class="mb-4">
     <div class="row">
-        <div class="col-md-4" style="width: 200px;">
-            <input type="text" name="name" class="form-control" placeholder="Имя" value="{{ request('name') }}">
+        <div class="col-md-2" style="width: 200px;">
+            <input type="text" name="name" class="form-control" placeholder="Имя" value="{{ request('name') }}" style="width: 200px;">
         </div>
-        <div class="col-md-4">
+        <div class="col-md-2">
             @foreach($statuses as $statusKey => $statusLabel)
                 <div>
                     <label>
@@ -32,6 +32,7 @@
                 <th width="80px">Имя</th>
                 <th width="100">Email</th>
                 <th width="110px">Телефон</th>
+                <th width="110px">Город</th>
                 <th width="170px">Дата регистрации</th>
                 <th width="100px">Статус</th>
                 <th width="120px">Действие</th>
@@ -44,9 +45,14 @@
                     <td>{{ $client->name }}</td>
                     <td>{{ $client->email }}</td>
                     <td>{{ $client->phone }}</td>
+                    <td>{{ $client->city }}</td>
                     <td>{{ $client->registered_at }}</td>
                     <td>{{ $client->status }}</td>
-                    <td><a href="{{ route('clients.edit', $client) }}">Редактировать</a> </td>
+                    <td>
+                    <a href="{{ route('clients.edit', $client) }}">Редактировать</a>
+                    <br>
+                    <a href="{{ route('clients.show', $client) }}">Профиль</a>
+                    </td>
                 </tr>
             @endforeach
         </tbody>
